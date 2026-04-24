@@ -1,0 +1,9 @@
+import yfinance as yf
+
+stocks = ["TSLA", "NVDA", "AAPL", "AMD"]
+
+for s in stocks:
+    data = yf.Ticker(s).history(period="1d", interval="5m")
+    if len(data) > 1:
+        if data["Close"].iloc[-1] > data["Close"].iloc[-2]:
+            print(f"BUY SIGNAL: {s}")
